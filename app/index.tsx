@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -20,10 +20,22 @@ export default function HomeScreen() {
       </Text>
       <View className="flex-row gap-4">
         <View className=" bg-white border-red-500 border-2 p-2">
-          <Text className="">この辺に入力バーができたら神</Text>
+      <TextInput
+       className="w-[200px]"
+        placeholder="ここに入力してください"
+        onChangeText={(text) => {
+          console.log(text)
+        }}
+        />
         </View>
         <View className=" bg-white border-6 border-red-500 border-2 p-2">
-          <Text>ボタンはここ</Text>
+        <TouchableOpacity
+          onPress={() => {
+            console.log("ボタンが押されました");
+          }}
+          >
+          <Text>ボタン</Text>
+        </TouchableOpacity>
         </View>
       </View>
 
