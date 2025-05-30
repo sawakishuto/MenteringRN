@@ -1,39 +1,58 @@
+import Checkbox from 'expo-checkbox';
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
   // ↓がやることをいっぱいぶち込める箱みたいなもの
   const [todo, setTodo] = useState<{ id: number; title: string }[]>([]);
-
+  const [isChecked, setIsChecked] = useState(false)
+  
   // 画面が表示されたときに色々できる場所
   useEffect(() => {
     // 実際に仮のやることを箱の中に入れている
     setTodo([{ id: 1, title: "タスクをスクロールできるようにしよう" }]);
   }, []);
-
   return (
     <View className="flex-1 items-center  bg-white border-6 border-red-500 gap-4 top-[60px] ">
       <Text className="text-yellow-500 text-3xl font-bold border-2 border-blue-500">
         TODOアプリ
       </Text>
+      ./detail.tsx
+      <Image
+        source={require('../assets/images/icon.png')}
+        style={{ width: 100, height: 100 }}
+      />
+      <Checkbox value={isChecked} onValueChange={(nextValue)=> {
+        console.log("uooo", nextValue)
+        setIsChecked(nextValue)
+      }} />
+      <Text>
+        シュウトです チェックボックスの中身は、{isChecked ? "true" : "false"} です
+      </Text>
+
+      <Text>
+        inueeeee
+      </Text>
+      {/* <Image source={}/> */}
+
       <View className="flex-row gap-4">
         <View className=" bg-white border-red-500 border-2 p-2">
-      <TextInput
-       className="w-[220px]"
-        placeholder="あいうえおかきくけこ"
-        onChangeText={(text) => {
-          console.log(text)
-        }}/>
-    
+          <TextInput
+            className="w-[220px]"
+            placeholder="あいうえおかきくけこ"
+            onChangeText={(text) => {
+              console.log(text)
+            }} />
+
         </View>
         <View className=" bg-white border-6 border-red-500 border-2 p-2">
-         <TouchableOpacity
-         onPress={() => {
-          console.log("ボタン押しました")
-         }}>
-          <Text>ボタンはここ</Text>
+          <TouchableOpacity
+            onPress={() => {
+              console.log("ボタン押しました")
+            }}>
+            <Text>ボタンはここ</Text>
           </TouchableOpacity>
         </View>
       </View>
